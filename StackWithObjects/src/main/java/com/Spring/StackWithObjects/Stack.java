@@ -6,13 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Stack {
+public class Stack<T> {
 
     @Id
     private int stackID;
     private int size;
     private int topIndex = -1;
-    private Object[] stack;
+    private String type;
+    private T[] stack;
 
     public Stack() {
         super();
@@ -21,17 +22,18 @@ public class Stack {
     public Stack(int stackID, int size) {
         this.stackID = stackID;
         this.size = size;
-        this.stack = new Object[size];
+        this.stack = (T[]) new Object[size];
+        this.type = ((T)new Object()).getClass().getSimpleName();
     }
 
-    public void push(Object o){
+    public void push(T o){
         this.topIndex++;
         System.out.println(topIndex);
         this.stack[topIndex] = o;
     }
 
-    public Object pop(){
-        Object popped = this.stack[topIndex];
+    public T pop(){
+        T popped = this.stack[topIndex];
         this.topIndex--;
         return popped;
     }
@@ -64,8 +66,16 @@ public class Stack {
         return stack;
     }
 
-    public void setStack(Object[] stack) {
+    public void setStack(T[] stack) {
         this.stack = stack;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
