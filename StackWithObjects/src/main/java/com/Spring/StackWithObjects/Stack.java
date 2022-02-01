@@ -1,9 +1,12 @@
 package com.Spring.StackWithObjects;
 
+import org.hibernate.annotations.IndexColumn;
+import org.hibernate.annotations.Type;
+
+import java.io.Serializable;
 import java.lang.Object;
 import java.util.Arrays;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Stack<T> {
@@ -13,17 +16,24 @@ public class Stack<T> {
     private int size;
     private int topIndex = -1;
     private String type;
+//    @OneToMany(targetEntity = Stack.class)
+//    @JoinColumns({
+//            @JoinColumn(
+//                    name = "event_id",
+//                    referencedColumnName = "event_id", insertable = false, updatable = false)
+//    })
     private T[] stack;
 
+
+
     public Stack() {
-        super();
     }
 
     public Stack(int stackID, int size) {
         this.stackID = stackID;
         this.size = size;
         this.stack = (T[]) new Object[size];
-        this.type = ((T)new Object()).getClass().getSimpleName();
+        this.type = ((T) new Object()).getClass().getSimpleName();
     }
 
     public void push(T o){

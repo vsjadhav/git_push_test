@@ -18,15 +18,19 @@ public class StackServiceImpl implements StackService{
     public Object create(HashMap<String, Object> h) {
         Object id_obj = h.get("stackID");
         Object size_obj = h.get("size");
+        Object type_obj = h.get("type");
         var id = ObjectToInt.objToInt(id_obj);
         var size = ObjectToInt.objToInt(size_obj);
-        if ((id.get("success") == 1) && size.get("success") == 1 ){
+        var type = TypeCheck.check(type_obj);
+        if ((id.get("success") == 1) && size.get("success") == 1
+                && type.get("success").contentEquals("1")){
             if(size.get("value")<=0){
                 return "\"create\" operation failed\n" +
                         "Size must be greater than 0";
             }
             else {
-                var temp = new Stack(id.get("value"), size.get("value"));
+                var temp = CreateStackUtil.create(id.get("value"),
+                                size.get("value"),type.get("value"));
                 dao.save(temp);
                 return temp;
             }

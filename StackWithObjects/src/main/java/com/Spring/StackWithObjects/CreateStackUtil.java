@@ -1,7 +1,7 @@
 package com.Spring.StackWithObjects;
 
 public class CreateStackUtil {
-    public static Object create(int id, int size, String type){
+    public static Stack<? extends  Object> create(int id, int size, String type){
         if(type.contentEquals("integer")){
             return new Stack<Integer>(id,size);
         }
@@ -17,6 +17,6 @@ public class CreateStackUtil {
         else{
             return new Stack<Object>(id,size);
         }
-        
+
     }
 }
