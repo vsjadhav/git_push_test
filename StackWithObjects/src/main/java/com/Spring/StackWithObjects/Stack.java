@@ -22,6 +22,7 @@ public class Stack<T> {
 //                    name = "event_id",
 //                    referencedColumnName = "event_id", insertable = false, updatable = false)
 //    })
+//    @OneToMany(targetEntity = )
     private T[] stack;
 
 
