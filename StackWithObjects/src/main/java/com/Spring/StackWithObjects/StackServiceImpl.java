@@ -31,7 +31,15 @@ public class StackServiceImpl implements StackService{
             else {
                 var temp = CreateStackUtil.create(id.get("value"),
                                 size.get("value"),type.get("value"));
+                System.out.println(temp.getClass());
+                System.out.println(temp.getClass().getSimpleName());
                 dao.save(temp);
+//                HashMap<String, Object> stackById = GetStackById.get(dao, id.get("value"));
+//                Stack s = (Stack) stackById.get("value");
+//                return  s;
+//                System.out.println((s));
+//                System.out.println(s.getStackID());
+
                 return temp;
             }
         }

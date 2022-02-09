@@ -23,6 +23,7 @@ public class Stack<T> {
 //                    referencedColumnName = "event_id", insertable = false, updatable = false)
 //    })
 //    @OneToMany(targetEntity = )
+    @Transient
     private T[] stack;
 
 
@@ -30,11 +31,11 @@ public class Stack<T> {
     public Stack() {
     }
 
-    public Stack(int stackID, int size) {
+    public Stack(int stackID, int size, T[] arr) {
         this.stackID = stackID;
         this.size = size;
-        this.stack = (T[]) new Object[size];
-        this.type = ((T) new Object()).getClass().getSimpleName();
+        this.stack = arr;  //(T[]) new Object[size];
+        this.type =  stack.getClass().getSimpleName();
     }
 
     public void push(T o){
@@ -73,7 +74,8 @@ public class Stack<T> {
         this.topIndex = topIndex;
     }
 
-    public Object[] getStack() {
+    public T[] getStack() {
+        System.out.println(stack);
         return stack;
     }
 
